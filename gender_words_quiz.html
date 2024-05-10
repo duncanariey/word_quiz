@@ -317,7 +317,7 @@
         if (genderVocabulary.length > 5) {
             loadQuestion();
         } else {
-            resultElement.textContent = `Quiz completed! You knew ${correctFemaleResponses / totalFemaleResponses * 100}% of female-associated words and ${correctMaleResponses / totalMaleResponses * 100}% of male-associated words.`;
+            resultElement.textContent = `Quiz completed! You knew ${(correctFemaleResponses / totalFemaleResponses * 100).toFixed(2)}% of female-associated words and ${(correctMaleResponses / totalMaleResponses * 100).toFixed(2)}% of male-associated words.`;
             optionsElement.innerHTML = '';
         }
     }
