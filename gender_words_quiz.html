@@ -318,6 +318,8 @@
         if (genderVocabulary.length > 5) {
             loadQuestion();
         } else {
+            promptElement.style.display = "none"
+            questionElement.style.display = "none"
             resultElement.textContent = `Quiz completed! You knew ${(correctFemaleResponses / totalFemaleResponses * 100).toFixed(2)}% of female-associated words and ${(correctMaleResponses / totalMaleResponses * 100).toFixed(2)}% of male-associated words.`;
             optionsElement.innerHTML = '';
         }
