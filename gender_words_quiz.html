@@ -47,20 +47,20 @@
 <div class="title">
     <h2>Gender-Associated Vocabulary Quiz</h2>
 </div>
-<div class="explanation">
+<div class="explanation" id="explanation">
     <p>In 2018, European researchers published <a href="https://link.springer.com/article/10.3758/s13428-018-1077-9#Sec4">a study</a> identifying a number of words that are significantly more likely to be known by women than men, or by men than women.</p>
     <p>This quiz tests your knowledge of those words.</p>
     <p>It will be 25 questions, randomly selected from a larger question bank. You'll get your results at the end! </p>
 </div>
 <div class="quiz-container">
     <p id="result"></p>
-    <div>What is the definition of:</div>
+    <div id="prompt">What is the definition of:</div>
     <div class="question" id="question"></div>
     <div class="options" id="options"></div>
     <button onclick="checkAnswer()">Submit</button>
 </div>
 <div class="bio">
-    Disclaimer: gender is an incredibly complex topic. This is meant to simply be a fun curiosity and not in any way reductive of anyone's identity or experience.<br><br>
+    Disclaimer: gender is an incredibly complex topic. This is meant to simply be a fun curiosity and not in any way reductive of anyone's identity or experience.<br><br><br>
     (I don't currently have a job and if you'd like to give me one <a href="https://www.linkedin.com/in/duncanariey/">that would be ace</a>)
 </div>
 
@@ -255,12 +255,15 @@
     let results = ""
 
     let currentQuestion = Math.floor(Math.random() * genderVocabulary.length);
+    const explanationElement = document.getElementById('explanation');
+    const promptElement = document.getElementById('prompt')
     const questionElement = document.getElementById('question');
     const optionsElement = document.getElementById('options');
     const resultElement = document.getElementById('result');
 
     function loadQuestion() {
         const currentQuizData = genderVocabulary[currentQuestion];
+        promptElement.innerText = `Question ${1 + totalFemaleResponses + totalMaleResponses}/25. What is the definition of:`
         let possibleAnswers = [currentQuizData.definition];
         while (possibleAnswers.length < 4) {
             const incorrectWord = genderVocabulary[Math.floor(Math.random() * genderVocabulary.length)]
@@ -288,6 +291,9 @@
         if (!selectedOption) {
             alert('Please select an option.');
             return;
+        }
+        if (explanationElement.style.display != "none") {
+            explanationElement.style.display = "none"
         }
         const userAnswer = selectedOption.value;
         const correctAnswer = genderVocabulary[currentQuestion].definition;
