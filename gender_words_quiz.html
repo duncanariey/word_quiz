@@ -305,6 +305,7 @@
             totalMaleResponses ++
         }
         if (userAnswer === correctAnswer) {
+            document.body.style.backgroundColor = "#AFE1AF";
             if (genderVocabulary[currentQuestion].female_percentage > genderVocabulary[currentQuestion].male_percentage) {
                 correctFemaleResponses ++
             } else {
@@ -312,6 +313,7 @@
             }
             resultElement.textContent = "Correct!";
         } else {
+            document.body.style.backgroundColor = "#E97551";
             resultElement.textContent = `Incorrect! The definition of ${genderVocabulary[currentQuestion].word.toLowerCase()} is: ${correctAnswer}`;
         }
         genderVocabulary.splice(currentQuestion, 1);
@@ -319,9 +321,10 @@
         if (genderVocabulary.length > 5) {
             loadQuestion();
         } else {
-            promptElement.style.display = "none"
-            questionElement.style.display = "none"
-            submitButton.style.display = "none"
+            document.body.style.backgroundColor = "";
+            promptElement.style.display = "none";
+            questionElement.style.display = "none";
+            submitButton.style.display = "none";
             resultElement.textContent = `Quiz completed! You knew ${(correctFemaleResponses / totalFemaleResponses * 100).toFixed(2)}% of female-associated words and ${(correctMaleResponses / totalMaleResponses * 100).toFixed(2)}% of male-associated words.`;
             optionsElement.innerHTML = '';
         }
