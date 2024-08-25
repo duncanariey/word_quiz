@@ -58,7 +58,7 @@
     <div id="prompt">What is the definition of:</div>
     <div class="question" id="question"></div>
     <div class="options" id="options"></div>
-    <button onclick="checkAnswer()">Submit</button>
+    <button onclick="checkAnswer()" id="submit-button">Submit</button>
 </div>
 <div class="bio">
     Disclaimer: gender is an incredibly complex topic. This is meant to simply be a fun curiosity and not in any way reductive of anyone's identity or experience.<br><br><br>
@@ -261,6 +261,7 @@
     const questionElement = document.getElementById('question');
     const optionsElement = document.getElementById('options');
     const resultElement = document.getElementById('result');
+    const submitButton = document.getElementById('submit-button')
 
     function loadQuestion() {
         const currentQuizData = genderVocabulary[currentQuestion];
@@ -320,6 +321,7 @@
         } else {
             promptElement.style.display = "none"
             questionElement.style.display = "none"
+            submitButton.style.display = "none"
             resultElement.textContent = `Quiz completed! You knew ${(correctFemaleResponses / totalFemaleResponses * 100).toFixed(2)}% of female-associated words and ${(correctMaleResponses / totalMaleResponses * 100).toFixed(2)}% of male-associated words.`;
             optionsElement.innerHTML = '';
         }
